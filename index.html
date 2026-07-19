@@ -64,6 +64,7 @@
     padding:12px 14px;transition:.15s;outline:none}
   input:focus,select:focus{border-color:var(--teal);border-style:solid;background:#fff}
   .row{display:flex;gap:12px;flex-wrap:wrap}.row .field{flex:1;min-width:150px}
+  @media(max-width:400px){.row{flex-direction:column}.row .field{min-width:0}}
   .field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:700}
   .with-unit{position:relative}
   .with-unit input{padding-right:90px}
