@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pronostics de naissance</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --milk:#FAF5EE; --paper:#FFFFFF; --ink:#3A3532; --muted:#8A817C;
+    --sage:#6E8B74; --sage-d:#5A7460; --berry:#B25E7E; --honey:#E4B363; --line:#EAE1D4;
+  }
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);
+    background:var(--milk);min-height:100vh;padding:28px 16px 60px;line-height:1.55}
+  .wrap{max-width:640px;margin:0 auto}
+  h1,h3,.q-title,.ribbon{font-family:Georgia,"Times New Roman",serif}
+
+  .hero{text-align:center;padding:8px 4px 22px}
+  .ribbon{display:inline-block;background:var(--honey);color:#5A4321;font-size:13px;
+    letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:20px;font-weight:600}
+  .feet{width:56px;height:36px;color:var(--berry);display:block;margin:18px auto 6px}
+  .hero h1{font-size:34px;font-weight:600;line-height:1.15;margin-bottom:10px}
+  .intro{color:var(--muted);max-width:440px;margin:0 auto;font-size:15.5px}
+
+  .card{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:20px;
+    padding:22px 22px 20px;margin-bottom:14px;box-shadow:0 3px 14px rgba(58,53,50,.05)}
+  .intro-card{border-style:dashed;border-color:var(--berry)}
+  .q-num{position:absolute;top:-11px;left:20px;width:30px;height:30px;border-radius:50%;
+    background:var(--sage);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center;
+    box-shadow:0 2px 6px rgba(110,139,116,.4)}
+  .q-title{font-size:19px;font-weight:600;margin-bottom:4px}
+  .q-sub,.q-label{color:var(--muted);font-size:14.5px;margin-bottom:14px;display:block}
+  .q-label{font-weight:600;color:var(--ink);font-size:16px}
+
+  input,select{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#FCFAF6;
+    border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;transition:.15s;outline:none}
+  input:focus,select:focus{border-color:var(--sage);background:#fff;box-shadow:0 0 0 3px rgba(110,139,116,.15)}
+  .row{display:flex;gap:12px}.row .field{flex:1}
+  .field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:600}
+  .with-unit{position:relative}
+  .with-unit .unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;pointer-events:none}
+
+  .send{width:100%;border:0;background:var(--berry);color:#fff;font-size:17px;font-weight:600;
+    padding:16px;border-radius:16px;cursor:pointer;margin-top:6px;transition:.18s;box-shadow:0 4px 14px rgba(178,94,126,.35)}
+  .send:hover{background:#9E4E6D;transform:translateY(-1px)}.send:active{transform:none}
+  .send:disabled{opacity:.6;cursor:default;transform:none}
+  .msg{text-align:center;margin-top:10px;font-weight:600;font-size:14px}
+  .msg.err{color:var(--berry)}
+  .ghost{border:1.5px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-weight:600;
+    font-size:14px;padding:9px 16px;border-radius:12px;cursor:pointer;transition:.15s}
+  .ghost:hover{border-color:var(--sage);color:var(--sage-d)}
+
+  .thanks{text-align:center;border-color:var(--sage);border-style:dashed;margin-top:16px}
+  .thanks h3{font-size:24px;margin-bottom:6px}.thanks p{color:var(--muted);margin-bottom:16px}
+  .foot{text-align:center;color:var(--muted);font-size:13px;margin-top:30px}
+  @media(max-width:480px){.hero h1{font-size:28px}.row{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="ribbon">Pronostics de naissance</div>
+    <svg class="feet" viewBox="0 0 64 40" aria-hidden="true">
+      <path d="M14 8c-4 0-7 4-7 9 0 4 2 7 6 8 3 1 6 0 7-3 1-2 0-5-2-7-2-2-4-6-4-7z" fill="currentColor"/>
+      <circle cx="9" cy="24" r="2.4" fill="currentColor"/><circle cx="13" cy="27" r="2.1" fill="currentColor"/>
+      <circle cx="17" cy="28" r="1.9" fill="currentColor"/><circle cx="21" cy="27.5" r="1.6" fill="currentColor"/>
+      <path d="M50 8c4 0 7 4 7 9 0 4-2 7-6 8-3 1-6 0-7-3-1-2 0-5 2-7 2-2 4-6 4-7z" fill="currentColor"/>
+      <circle cx="55" cy="24" r="2.4" fill="currentColor"/><circle cx="51" cy="27" r="2.1" fill="currentColor"/>
+      <circle cx="47" cy="28" r="1.9" fill="currentColor"/><circle cx="43" cy="27.5" r="1.6" fill="currentColor"/>
+    </svg>
+    <h1>Coucou&nbsp;! C'est moi&nbsp;🥰</h1>
+    <p class="intro">Mes parents sont un peu (beaucoup) joueurs et ils veulent tromper l'attente avant que je débarque.
+      Alors&nbsp;: à vous de deviner&nbsp;! Remplissez vos pronostics, j'ai déjà hâte de tous vous rencontrer.</p>
+  </header>
+
+  <form id="form" autocomplete="off">
+    <div class="card intro-card">
+      <label class="q-label" for="name">D'abord, qui êtes-vous&nbsp;?</label>
+      <input id="name" type="text" placeholder="Votre prénom" required />
+    </div>
+
+    <div class="card">
+      <span class="q-num">1</span>
+      <p class="q-title">Le grand jour&nbsp;📅</p>
+      <p class="q-sub">Quand est-ce que je débarque, et à quelle heure&nbsp;? (je fais toujours ce que je veux avec les horaires&nbsp;!)</p>
+      <div class="row">
+        <div class="field"><label for="date">Date</label><input id="date" type="date" /></div>
+        <div class="field"><label for="time">Heure</label><input id="time" type="time" /></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="q-num">2</span>
+      <p class="q-title">Mon poids plume&nbsp;⚖️</p>
+      <p class="q-sub">Combien je pèserai à ma sortie&nbsp;? Soyez précis, il y a de la compétition&nbsp;!</p>
+      <div class="field with-unit"><input id="weight" type="number" min="1000" max="6000" placeholder="ex. 3400" /><span class="unit">grammes</span></div>
+    </div>
+
+    <div class="card">
+      <span class="q-num">3</span>
+      <p class="q-title">Ma toise&nbsp;📏</p>
+      <p class="q-sub">Et je mesurerai combien, des pieds à la tête&nbsp;?</p>
+      <div class="field with-unit"><input id="height" type="number" min="30" max="65" placeholder="ex. 50" /><span class="unit">cm</span></div>
+    </div>
+
+    <div class="card">
+      <span class="q-num">4</span>
+      <p class="q-title">Ma petite tignasse&nbsp;💇</p>
+      <p class="q-sub">Cheveux bruns, blonds, roux… ou crâne tout lisse pour commencer&nbsp;?</p>
+      <select id="hair">
+        <option value="">— Choisir —</option>
+        <option>Bruns</option><option>Châtains</option><option>Blonds</option>
+        <option>Roux</option><option>Crâne tout lisse pour l'instant</option><option>Surprise&nbsp;!</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <span class="q-num">5</span>
+      <p class="q-title">Mon regard de star&nbsp;👀</p>
+      <p class="q-sub">De quelle couleur seront mes yeux quand je vous ferai les yeux doux&nbsp;?</p>
+      <select id="eyes">
+        <option value="">— Choisir —</option>
+        <option>Bleus</option><option>Verts</option><option>Marron</option>
+        <option>Gris</option><option>Noisette</option><option>Surprise&nbsp;!</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <span class="q-num">6</span>
+      <p class="q-title">Mon petit nom&nbsp;🔤</p>
+      <p class="q-sub">Mystère, mystère… à votre avis, comment je vais m'appeler&nbsp;?</p>
+      <input id="guessname" type="text" placeholder="Votre pari sur mon prénom" />
+    </div>
+
+    <div class="card">
+      <span class="q-num">7</span>
+      <p class="q-title">Mon portrait craché&nbsp;👶</p>
+      <p class="q-sub">Je ressemblerai le plus à qui, à ma naissance&nbsp;?</p>
+      <select id="look">
+        <option value="">— Choisir —</option>
+        <option>Maman</option><option>Papa</option><option>Un petit alien tout fripé (soyons honnêtes)</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <span class="q-num">8</span>
+      <p class="q-title">Mon premier cadeau&nbsp;🎁</p>
+      <p class="q-sub">Qui aura l'immense honneur de recevoir mon tout premier pipi ou mon premier rototo bien placé&nbsp;?&nbsp;😇</p>
+      <input id="gift" type="text" placeholder="Le prénom du grand gagnant" />
+    </div>
+
+    <button type="submit" id="submit" class="send">Envoyer mes pronostics&nbsp;💌</button>
+    <p id="msg" class="msg err" hidden></p>
+  </form>
+
+  <div id="thanks" class="card thanks" hidden>
+    <h3>Merci&nbsp;! 🎉</h3>
+    <p>Vos pronostics sont bien enregistrés. On se voit très bientôt&nbsp;!</p>
+    <button class="ghost" id="again">Envoyer d'autres pronostics</button>
+  </div>
+
+  <footer class="foot">Fait avec ❤️ en attendant bébé</footer>
+</div>
+
+<script>
+  // ⚠️ COLLEZ ICI l'URL de votre déploiement Apps Script (elle finit par /exec)
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyIyVVRKcsr75b7CH0sR4x7Z7VLJBXgLg_a_AfL5jKT74b9pHHRMHzH89uY_bIT610f/exec";
+
+  const $ = s => document.querySelector(s);
+  const fields = ["date","time","weight","height","hair","eyes","guessname","look","gift"];
+
+  $("#form").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const name = $("#name").value.trim();
+    if(!name){ showMsg("Petit oubli : écrivez au moins votre prénom !"); $("#name").focus(); return; }
+    if(SCRIPT_URL.startsWith("COLLEZ")){ showMsg("Le site n'est pas encore relié à la feuille (SCRIPT_URL manquant)."); return; }
+
+    const payload = { name };
+    fields.forEach(f => payload[f] = $("#"+f).value.trim ? $("#"+f).value.trim() : $("#"+f).value);
+
+    const btn = $("#submit");
+    btn.disabled = true; btn.textContent = "Enregistrement…"; $("#msg").hidden = true;
+    try{
+      // text/plain => requête "simple", pas de préflight CORS avec Apps Script
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      });
+      $("#form").hidden = true;
+      $("#thanks").hidden = false;
+      $("#thanks").scrollIntoView({ behavior:"smooth", block:"center" });
+    }catch(e){
+      showMsg("Oups, l'envoi a échoué. Vérifiez votre connexion et réessayez.");
+    }finally{
+      btn.disabled = false; btn.textContent = "Envoyer mes pronostics 💌";
+    }
+  });
+
+  $("#again").addEventListener("click", () => {
+    $("#form").reset(); $("#form").hidden = false; $("#thanks").hidden = true;
+    window.scrollTo({ top:0, behavior:"smooth" });
+  });
+
+  function showMsg(t){ const m=$("#msg"); m.textContent=t; m.hidden=false; }
+</script>
+</body>
+</html>
